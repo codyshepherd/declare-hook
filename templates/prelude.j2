@@ -1,0 +1,27 @@
+#!/bin/bash -eux
+
+source /build/config/binary
+source /build/config/extra.settings
+source /build/config/functions
+
+_src=$(readlink -f ${0})
+_src_d=$(dirname ${_src})
+source ${_src_d}/functions
+
+case $ARCH in
+{%- for arch in arches %}
+            {{ arch }}) ;;
+{%- endfor %}
+            *) echo "[title] images are only supported for amd64";
+               exit 0;;
+esac
+
+mkdir -p {{ mountpoint }}
+
+cleanup() {
+    umount_disk_image {{ mountpoint }}
+    rm -rf {{ mountpoint }}
+}
+trap "cleanup" EXIT
+
+
