@@ -1,4 +1,4 @@
-cat > mountpoint_custom/etc/default/grub.d/{{ grub_config_filename }} << EOF
+cat > {{ mountpoint }}/etc/default/grub.d/{{ grub_config_filename }} << EOF
 {%- for setting in grub_settings %}
 {{ setting }}
 {%- endfor %}

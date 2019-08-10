@@ -12,7 +12,7 @@ case $ARCH in
 {%- for arch in arches %}
             {{ arch }}) ;;
 {%- endfor %}
-            *) echo "[title] images are only supported for amd64";
+            *) echo "{{ title }} images are only supported for amd64";
                exit 0;;
 esac
 
