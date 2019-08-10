@@ -1,5 +1,6 @@
 arches:
   - amd64
+  - armhf
 grub_config_filename: "50-customimg-settings.cfg"
 grub_settings:
   - 'GRUB_CMDLINE_LINUX_DEFAULT="nokaslr"'
