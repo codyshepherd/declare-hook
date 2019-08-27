@@ -2,7 +2,7 @@ arches:
   - amd64
   - armhf
 grub_config_filename: "50-customimg-settings.cfg"
-grub_settings:
+grub_settings_append:
   - 'GRUB_CMDLINE_LINUX_DEFAULT="nokaslr"'
 mountpoint: 'mountpoint_custom'
 templates:

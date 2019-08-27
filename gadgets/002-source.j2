@@ -1,0 +1,13 @@
+{%- for image in images %}
+  {%- if 'source' in image['image'] %}
+if [ $ARCH = {{ image['image']['arch'] }} ]; then
+    {%- for item in image['image']['source'] %}
+      {%- if 'prelude' in item %}
+{{ item['item']['prelude'] }}
+      {%- endif %}
+source {{ item['item']['file'] }}
+    {%- endfor %}
+fi
+  {%- endif %}
+{%- endfor %}
+

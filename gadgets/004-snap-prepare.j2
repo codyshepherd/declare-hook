@@ -1,0 +1,10 @@
+{%- for image in images %}
+{%- if 'snaps' in image['image'] %}
+if [ $ARCH = {{ image['image']['arch'] }} ]; then
+  {%- for snap in image['image']['snaps'] %}
+snap_prepare_assertions {{ mountpoint }}  {{ snap['snap']['brand'] }}:{{ snap['snap']['model'] }}
+  {%- endfor %}
+fi
+{%- endif %}
+{%- endfor %}
+

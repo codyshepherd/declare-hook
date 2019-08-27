@@ -1,0 +1,6 @@
+{%- for image in images %}
+if [ $ARCH = {{ image['arch'] }} ]; then
+  {%- for setting in image['sed'] %}
+sed {{ setting['expression'] }} {{ setting['target'] }}
+  {%- endfor %}
+{%- endfor %}

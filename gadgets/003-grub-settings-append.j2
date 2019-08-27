@@ -1,0 +1,19 @@
+{%- for image in images %}
+{%- if 'grub_config_filename' in image['image'] %}
+if [ $ARCH = {{ image['image']['arch'] }} ]; then
+{%- if 'grub_settings_append' in image['image'] %}
+cat >> {{ mountpoint }}/etc/default/grub.d/{{ image['image']['grub_config_filename'] }} << EOF
+  {%- for setting in image['image']['grub_settings_append'] %}
+{{ setting }}
+  {%- endfor %}
+EOF
+{%- endif %}
+{%- if 'grub_settings_overwrite' in image['image'] %}
+cat > {{ mountpoint }}/etc/default/grub.d/{{ image['image']['grub_config_filename'] }} << EOF
+{{ image['image']['grub_settings_overwrite'] -}}
+EOF
+{%- endif %}
+fi
+{%- endif %}
+{%- endfor %}
+

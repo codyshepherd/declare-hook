@@ -1,6 +1,0 @@
-cat > {{ mountpoint }}/etc/default/grub.d/{{ grub_config_filename }} << EOF
-{%- for setting in grub_settings %}
-{{ setting }}
-{%- endfor %}
-EOF
-
